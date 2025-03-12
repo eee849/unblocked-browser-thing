@@ -1,4 +1,4 @@
-# Project Title
+# Unblocked Browser Thing
 A little thing i made for myself- praying i can host it
 
 ## Installation
