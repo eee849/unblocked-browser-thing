@@ -19,8 +19,7 @@ Used as a unblocked browser for schools.
 
 
 ## Technologies
-
-_Name the technologies used in the project._ 
+ 
 * [Replit](https://replit.com/) - IDE used
 
 ## Acknowledgments And Info
