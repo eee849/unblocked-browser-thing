@@ -13,7 +13,9 @@ os.environ["DISPLAY"] = ":99"
 firefox_options = Options()
 firefox_options.add_argument("--width=1920")
 firefox_options.add_argument("--height=1080")
-firefox_options.add_argument("--start-maximized")  # Ensure it starts maximized
+firefox_options.add_argument("--start-maximized")
+firefox_options.add_argument("-private") #ensure that there are no webdriver lock problems from past experience
+  # Ensure it starts maximized
 # Remove headless mode (important for GUI!)
 # firefox_options.add_argument("--headless")  # COMMENT THIS LINE!
 
