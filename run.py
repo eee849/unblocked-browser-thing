@@ -58,7 +58,7 @@ def install_geckodriver():
 # Function to start the VNC server
 def start_vnc():
     print("🖥️  Starting Xvfb virtual display on :99...")
-    subprocess.Popen(["Xvfb", ":99", "-screen", "0", "1280x720x24", "-ac"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    subprocess.Popen(["Xvfb", ":99", "-screen", "0", "1920x1080x24", "-ac"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     os.environ["DISPLAY"] = ":99"
     time.sleep(2)  # Give Xvfb time to start
 
@@ -67,7 +67,7 @@ def start_vnc():
     time.sleep(2)
 
     print("🌐 Starting noVNC server on http://localhost:6080 ...")
-    subprocess.Popen(["/usr/share/novnc/utils/launch.sh", "--vnc", "localhost:5900"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    subprocess.Popen(["/usr/share/novnc/utils/launch.sh", "--vnc", "localhost:5900", "--listen", "6080", "--resize", "remote"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     time.sleep(2)
 
 # Main function to install dependencies and start services
