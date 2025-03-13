@@ -11,6 +11,8 @@ Selenium
 ```bash
 pip install selenium
 ```
+but you should not have to run the prerequisites manually, it should auto install as soon as you run run.py (LINUX ONLY)
+this will not work on windows, potentially could work on mac though
 
 ## Usage
 
