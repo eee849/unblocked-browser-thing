@@ -57,17 +57,22 @@ def install_geckodriver():
 
 # Function to start the VNC server
 def start_vnc():
+    print("🛑 Killing any existing Xvfb, x11vnc, and noVNC processes...")
+    subprocess.run(["pkill", "-9", "Xvfb"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    subprocess.run(["pkill", "-9", "x11vnc"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    subprocess.run(["pkill", "-9", "websockify"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
     print("🖥️  Starting Xvfb virtual display on :99...")
     subprocess.Popen(["Xvfb", ":99", "-screen", "0", "1920x1080x24", "-ac"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     os.environ["DISPLAY"] = ":99"
     time.sleep(2)  # Give Xvfb time to start
 
     print("🔄 Starting x11vnc server on port 5900...")
-    subprocess.Popen(["x11vnc", "-display", ":99", "-nopw", "-forever"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    subprocess.Popen(["x11vnc", "-display", ":99", "-nopw", "-forever", "-rfbport", "5900"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     time.sleep(2)
 
     print("🌐 Starting noVNC server on http://localhost:6080 ...")
-    subprocess.Popen(["/usr/share/novnc/utils/launch.sh", "--vnc", "localhost:5900", "--listen", "6080", "--resize", "remote"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    subprocess.Popen(["/usr/share/novnc/utils/launch.sh", "--vnc", "localhost:5900"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     time.sleep(2)
 
 # Main function to install dependencies and start services
