@@ -1,4 +1,8 @@
 selenium
-webdriver-manager
-flask
-gunicorn
+sudo apt update && sudo apt install -y novnc websockify
+sudo apt update && sudo apt install -y \
+    wget unzip xvfb x11vnc fluxbox \
+    python3 python3-pip python3-venv
+
+
+
