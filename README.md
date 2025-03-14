@@ -3,7 +3,13 @@ A little thing i made for myself- praying i can host it
 
 ## Installation
 
-I'm not sure if you can or not.
+Run run.py which should auto install all dependents and then start the port forwarding.
+
+### Important info
+
+After the run was successful, open port 6080 in your web browser from "Ports" in VScode or Codespaces. This should show you a list of files, and you want to click something like nvnc.html, not nvnc-lite.html.
+
+IF RESIZING PROBLEMS OCCUR GO TO SETTINGS AND SELECT LOCAL SCALING INSTEAD OF REMOTE.
 
 ### Prerequisites
 
@@ -11,6 +17,9 @@ Selenium
 ```bash
 pip install selenium
 ```
+but you should not have to run the prerequisites manually, it should auto install as soon as you run run.py (LINUX ONLY)
+this will not work on windows, potentially could work on mac though
+do not run themain.py, run run.py as that will start all the ports and install all prerequisites and then run themain.py for you
 
 ## Usage
 
@@ -21,6 +30,7 @@ Used as a unblocked browser for schools.
 ## Technologies
  
 * [Replit](https://replit.com/) - IDE used
+* Github Codespaces
 
 ## Acknowledgments And Info
 
