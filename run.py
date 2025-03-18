@@ -56,6 +56,7 @@ def install_geckodriver():
         print("✅ geckodriver is already installed.")
 
 # Function to start the VNC server
+# Function to start the VNC server
 def start_vnc():
     print("🛑 Killing any existing Xvfb, x11vnc, and noVNC processes...")
     subprocess.run(["pkill", "-9", "Xvfb"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
