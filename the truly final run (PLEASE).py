@@ -6,13 +6,8 @@ from flask import Flask, Response
 
 app = Flask(__name__)
 
-# Function to determine if running in Codespaces
-def is_codespaces():
-    return "CODESPACES" in os.environ
-
-if "HOME" not in os.environ:
-    os.environ["HOME"] = "/root"  # Or "/home/codespace" if applicable
-
+# ✅ Set the correct home directory for Codespaces
+CODESPACES_HOME = "/workspaces/unblocked-browser-thing"
 
 # Function to start virtual display
 def start_xvfb():
@@ -25,14 +20,14 @@ def start_xvfb():
 def start_xubuntu():
     print("🖥️  Starting Xubuntu Desktop (Xfce session)...")
 
-    # Bypass D-Bus if in Codespaces
-    xfce_env = {"DISPLAY": ":99"}
-    if not is_codespaces():
-        xfce_env["DBUS_SESSION_BUS_ADDRESS"] = "unix:path=/var/run/dbus/system_bus_socket"
+    os.environ["HOME"] = "/workspaces/unblocked-browser-thing"
+    os.environ["XDG_RUNTIME_DIR"] = f"{os.environ['HOME']}/.xdg-runtime"
+    os.makedirs(os.environ["XDG_RUNTIME_DIR"], exist_ok=True)
 
+    # ❌ Prevent startxfce4 from launching dbus
     xfce_process = subprocess.Popen(
-        ["startxfce4", "--disable-server"],
-        env=xfce_env,
+        ["startxfce4", "--disable-server", "--sm-client-disable"],
+        env={"DISPLAY": ":99", "HOME": os.environ["HOME"], "XDG_RUNTIME_DIR": os.environ["XDG_RUNTIME_DIR"], "DBUS_SESSION_BUS_ADDRESS": "none"},
         stdout=subprocess.PIPE, stderr=subprocess.PIPE
     )
     time.sleep(5)
@@ -40,7 +35,7 @@ def start_xubuntu():
     if xfce_process.poll() is not None:
         output, error = xfce_process.communicate()
         print(f"❌ Xubuntu Error: {error.decode()}")
-        return
+        exit(1)
 
 # Function to start VNC server
 def start_vnc():
