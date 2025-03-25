@@ -1,0 +1,9 @@
+user_pref("network.proxy.type", 1);
+user_pref("network.proxy.socks", "127.0.0.1");
+user_pref("network.proxy.socks_port", 9050);
+user_pref("network.proxy.socks_version", 5);
+user_pref("network.proxy.socks_remote_dns", true);
+user_pref("network.proxy.no_proxies_on", "");
+user_pref("layers.acceleration.disabled", true);
+user_pref("gfx.webrender.force-disabled", true);
+user_pref("media.ffmpeg.vaapi.enabled", false);
