@@ -5,7 +5,7 @@ A little thing i made for myself- praying i can host it
 
 Run 
 ```bash
-docker build void-desktop -t .
+docker build -t void-desktop .
 ```
 
 ### Important info
