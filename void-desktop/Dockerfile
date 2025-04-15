@@ -6,7 +6,7 @@ ENV DISPLAY=:0 \
     HOME=/home/user
 
 # Step 1: Use HTTP mirror first
-RUN echo "repository=http://repo-fastly.voidlinux.org/current/musl" > /etc/xbps.d/00-repository-main.conf
+RUN echo "repository=http://mirror.yandex.ru/mirrors/voidlinux/current/musl" > /etc/xbps.d/00-repository-main.conf
 
 # Step 2: Upgrade xbps itself first (required!)
 RUN xbps-install -Sy xbps
@@ -15,10 +15,10 @@ RUN xbps-install -Sy xbps
 RUN xbps-install -Sy ca-certificates && update-ca-certificates
 
 # Optional: switch to HTTPS repo now
-RUN echo "repository=https://repo-fastly.voidlinux.org/current/musl" > /etc/xbps.d/00-repository-main.conf && \
+RUN echo "repository=https://mirror.clarkson.edu/voidlinux/current/musl" > /etc/xbps.d/00-repository-main.conf && \
     xbps-install -Sy
 
-    RUN echo "repository=https://repo-fastly.voidlinux.org/current/musl" > /etc/xbps.d/00-repository-main.conf && \
+    RUN echo "repository=https://mirror.clarkson.edu/voidlinux/current/musl" > /etc/xbps.d/00-repository-main.conf && \
     xbps-pkgdb -m hold base-files && \
     xbps-install -Syuy --force
 RUN xbps-install -y base-devel
@@ -29,18 +29,10 @@ RUN xbps-install -y git curl wget sudo sox ffmpeg python3 python3-pip
 RUN xbps-install -y bash
 RUN xbps-install -y xorg-server-xvfb
 RUN xbps-install -y tor
-# Add this if not already present
-RUN xbps-install -y ffmpeg sox
+
 
 # Optional: install simple Python HTTP server (usually included)
 RUN xbps-install -y python3
-
-# Expose an audio stream port
-RUN xbps-install -y alsa-utils ffmpeg socat
-EXPOSE 8080
-
-
-
 
 
 # Add user
@@ -49,10 +41,6 @@ RUN useradd -m -G audio,video,wheel -s /bin/bash $USER && \
 
 # Copy config
 COPY firefox-user.js /opt/firefox-user.js
-
-
-# Sound: ALSA only
-RUN echo 'pcm.!default { type hw; card 0; } ctl.!default { type hw; card 0; }' > /etc/asound.conf
 
 # Get noVNC
 RUN git clone https://github.com/novnc/noVNC.git /opt/noVNC && \

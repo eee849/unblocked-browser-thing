@@ -4,7 +4,6 @@
 export DISPLAY=:0
 export USER=user
 export HOME=/home/user
-export MOZ_ENABLE_PULSEAUDIO=0
 
 # Fix permissions
 mkdir -p /tmp/.X11-unix
@@ -22,12 +21,6 @@ sleep 2
 x11vnc -display :0 -forever -nopw -shared &
 sleep 2
 
-# Generate a test audio tone if you want:
-sox -n -r 44100 -c 2 /tmp/test.wav synth 15 sine 440
-
-# Option 1: Serve audio over HTTP directly
-cd /tmp
-python3 -m http.server 8080 &
 
 # Option 2: Live-stream audio (optional - requires source)
 # ffmpeg -re -i /tmp/test.wav -f mp3 -content_type audio/mpeg -ice_name "Void Stream" icecast://source:hackme@localhost:8000/mystream
@@ -51,16 +44,6 @@ su - $USER -c "
 
   firefox --profile ~/.mozilla/firefox/\"\$PROFILE_PATH\" &
 "
-
-
-# 🔊 STREAM AUDIO (ALSA -> MP3 -> HTTP)
-mkfifo /tmp/audiofifo
-
-# Replace `hw:0` with correct ALSA device if needed
-ffmpeg -f alsa -i hw:0 -acodec libmp3lame -ab 128k -f mp3 /tmp/audiofifo &
-
-# Serve audio via raw HTTP stream
-socat TCP-LISTEN:8080,reuseaddr,fork OPEN:/tmp/audiofifo,rdonly &
 
 # Generate self-signed cert
 openssl req -x509 -nodes -newkey rsa:2048 \
