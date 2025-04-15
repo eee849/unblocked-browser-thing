@@ -3,6 +3,8 @@ A little thing i made for myself- praying i can host it
 
 ## Installation
 
+It cannot watch videos on its own until you go to the xfce terminal and type "sudo tor" then go wherever you want on firefox and it will work perfectly, it is preconfigured with the proxy configuration.
+
 Run 
 ```bash
 docker build -t void-desktop .
