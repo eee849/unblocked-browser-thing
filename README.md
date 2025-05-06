@@ -10,6 +10,15 @@ Run
 docker build -t void-desktop .
 ```
 
+```bash
+docker run -it --rm \
+  --shm-size=1g \
+  -p 6080:6080 \
+  --name void-desktop \
+  void-desktop
+```
+once built, run that.
+
 ### Important info
 
 After the run was successful, open port 6080 in your web browser from "Ports" in VScode or Codespaces. This should show you a list of files, or automatically go to the novnc client. If it does show a list of files, you want to click something like nvnc.html, not nvnc-lite.html.
