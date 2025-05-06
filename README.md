@@ -18,7 +18,7 @@ THERE IS NO AUDIO YET!!!
 
 IF RESIZING PROBLEMS OCCUR GO TO SETTINGS AND SELECT LOCAL SCALING INSTEAD OF REMOTE.
 
-If you have issues please make a [issue] (https://github.com/eee849/unblocked-browser-thing/issues)
+If you have issues please make a [issue](https://github.com/eee849/unblocked-browser-thing/issues)
 
 ### Prerequisites
 
