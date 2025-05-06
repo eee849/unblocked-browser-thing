@@ -14,6 +14,8 @@ docker build -t void-desktop .
 
 After the run was successful, open port 6080 in your web browser from "Ports" in VScode or Codespaces. This should show you a list of files, or automatically go to the novnc client. If it does show a list of files, you want to click something like nvnc.html, not nvnc-lite.html.
 
+THERE IS NO AUDIO YET!!!
+
 IF RESIZING PROBLEMS OCCUR GO TO SETTINGS AND SELECT LOCAL SCALING INSTEAD OF REMOTE.
 
 ### Prerequisites
