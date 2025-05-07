@@ -49,7 +49,7 @@ Used as a unblocked OS/Browser for schools.
 
 ## Acknowledgments And Info
 
-There are no other documents I made on this or ones I know of, so there is nothing here.
+For more info/documentation go to [here](https://eee849.github.io)
 
 Nothing really inspired me to make this, just did for fun.
 
