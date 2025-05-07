@@ -29,6 +29,7 @@ RUN xbps-install -y git curl wget sudo sox ffmpeg python3 python3-pip
 RUN xbps-install -y bash
 RUN xbps-install -y xorg-server-xvfb
 RUN xbps-install -y tor
+RUN xbps-install -y dpkg
 
 
 # Optional: install simple Python HTTP server (usually included)
